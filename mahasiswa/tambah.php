@@ -20,7 +20,7 @@
 
         <a href="index.php" type="button"class="btn btn-secondary">Kembali</a>
 
-        <form action="proses-tambah.php" method="POST">
+        <form action="proses-tambah.php" method="POST" enctype="multipart/form-data">
             <div class="mb-3 mt-3">
                 <label for="npm" class="form-label">NPM :</label>
                 <input type="text" class="form-control" id="npm" placeholder="Masukkan Nomor Pengenal Mahasiswa" name="npm" required>
@@ -51,6 +51,19 @@
                     <option value="Desain Komunikasi Visual">Desain Komunikasi Visual</option>
                     <option value="Informatika">Informatika</option>
                 </select>
+            </div>
+            <!-- Tambahan input foto -->
+            <div class="mb-3">
+                <label for="foto" class="form-label">Foto :</label>
+                <input type="file" class="form-control" id="foto" name="foto" accept="image/*">
+            </div>
+            <!-- Tambahan checkbox beasiswa -->
+            <div class="mb-3">
+                <label class="form-label">Beasiswa :</label>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="beasiswa" name="beasiswa" value="Ya">
+                    <label class="form-check-label" for="beasiswa">Mahasiswa penerima beasiswa</label>
+                </div>
             </div>
             <div class="d-flex justify-content-end ">     
             <button type="submit" class="btn btn-primary ">Simpan</button>

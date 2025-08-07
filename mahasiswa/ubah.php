@@ -28,15 +28,15 @@
             $ambildata = mysqli_fetch_array($eksekusi)
 
         ?>
-        <form action="proses-ubah.php" method="POST">
+        <form action="proses-ubah.php" method="POST" enctype="multipart/form-data">
             <div class="mb-3 mt-3">
                 <label for="npm" class="form-label">NPM :</label>
-                <input type="text"  value="<?php echo $ambildata["npm"]; ?>" class="form-control" id="npm" placeholder="Masukkan Nomor Pengenal Mahasiswa" name="npm" readonly>
+                <input type="text"  value="<?php echo $ambildata["npm"]; ?>" class="form-control" id="npm" name="npm" readonly>
             </div>
 
             <div class="mb-3">
                 <label for="nama" class="form-label">Nama :</label>
-                <input type="text" value="<?php echo $ambildata["nama"]; ?>" class="form-control" id="nama" placeholder="Masukkan Nama Mahasiswa" name="nama">
+                <input type="text" value="<?php echo $ambildata["nama"]; ?>" class="form-control" id="nama" name="nama" required>
             </div>
 
             <div class="mb-3">
@@ -92,6 +92,28 @@
                     <option value="Informatika" <?php echo $pilih_if ?>>Informatika</option>
                 </select>
             </div>
+
+            <!-- Tambahan input foto -->
+            <div class="mb-3">
+                <label for="foto" class="form-label">Foto :</label>
+                <?php if(!empty($ambildata["foto"])): ?>
+                    <img src="uploads/<?php echo $ambildata["foto"]; ?>" width="50" height="50" alt="Foto"><br>
+                    <small>Foto saat ini: <?php echo $ambildata["foto"]; ?></small>
+                <?php endif; ?>
+                <input type="file" class="form-control" id="foto" name="foto" accept="image/*">
+                <input type="hidden" name="foto_lama" value="<?php echo $ambildata["foto"]; ?>">
+            </div>
+
+            <!-- Tambahan checkbox beasiswa -->
+            <div class="mb-3">
+                <label class="form-label">Beasiswa :</label>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="beasiswa" name="beasiswa" value="Ya"
+                    <?php echo ($ambildata["beasiswa"] == "Ya") ? "checked" : ""; ?>>
+                    <label class="form-check-label" for="beasiswa">Mahasiswa penerima beasiswa</label>
+                </div>
+            </div>
+
             <div class="d-flex justify-content-end ">     
             <button type="submit" class="btn btn-warning ">Ubah</button>
             </div>
